@@ -7,8 +7,12 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+//middleWare xu ly du lieu form post
+app.use(express.urlencoded());
+app.use(express.json());
+
 //http logger
-app.use(morgan('combined'));
+//app.use(morgan('combined'));
 
 //template handlebars
 app.engine('hbs', engine({
@@ -24,6 +28,16 @@ app.get('/', (req, res) => {
 app.get('/news', (req, res) => {
   res.render('news');
 })
+
+app.get('/search', (req, res) => {
+  //console.log(req.query)
+  res.render('search');
+})
+
+// app.post('/search', (req, res) => {
+//   //console.log(req.body)
+//   res.render('search');
+// })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
