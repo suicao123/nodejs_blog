@@ -34,6 +34,7 @@ app.get('/search', (req, res) => {
   res.render('search');
 })
 
+//danh cho phuong thuc post
 // app.post('/search', (req, res) => {
 //   //console.log(req.body)
 //   res.render('search');
