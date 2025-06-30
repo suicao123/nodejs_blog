@@ -7,6 +7,10 @@ const port = 3000;
 
 //tu nap file index
 const route = require('./routes');
+const db = require('./config/db');
+
+//connect to DB
+db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -28,9 +32,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources/views'));
 
 //routes init
-route(app
-
-);
+route(app);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

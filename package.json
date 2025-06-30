@@ -27,12 +27,10 @@
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
-  "hooks": {
-    "pre-commit": "lint-staged"
-  },
   "dependencies": {
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.2"
+    "express-handlebars": "^8.0.2",
+    "mongoose": "^8.16.1"
   },
   "devDependencies": {
     "husky": "^9.1.7",
