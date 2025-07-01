@@ -1,9 +1,5 @@
 @use 'variables' as var;
 
-h1 {
-    color: var.$red-color;
-}
-
-h2 {
-    color: rgb(13, 0, 255);
+.card-course-item {
+    margin-top: 16px;
 }

@@ -1,5 +1,6 @@
 const newsRouter = require('./news');
 const siteRouter = require('./site');
+const coursesRouter = require('./courses');
 
 function route(app) {
     //   app.get('/news', (req, res) => {
@@ -21,6 +22,8 @@ function route(app) {
     //      //console.log(req.body)
     //      res.render('search');
     //  })
+
+    app.use('/courses', coursesRouter);
 }
 
 module.exports = route;
