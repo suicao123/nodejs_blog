@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+const methodOverride = require('method-override')
 const { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
@@ -14,6 +15,8 @@ db.connect();
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(methodOverride('_method'))
+
 //middleWare xu ly du lieu form post
 app.use(express.urlencoded());
 app.use(express.json());
@@ -26,6 +29,9 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        },
     }),
 );
 app.set('view engine', 'hbs');
