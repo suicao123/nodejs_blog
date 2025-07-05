@@ -18,10 +18,50 @@
                     <td>{{this.createdAt}}</td>
                     <td>
                         <a href="/courses/{{this._id}}/edit" class="btn btn-link">Update</a>
-                        <a href="" class="btn btn-link">Delete</a>
+                        <a href="" class="btn btn-link" data-bs-toggle="modal" data-id="{{this._id}}" data-bs-target="#delete-course-modal">Delete</a>
                     </td>
                 </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+<div id="delete-course-modal" class="modal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete course</h5>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to cancel this course?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="delet-course-form" method="POST"></form>
+
+<script>
+    
+    var courseId;
+    var btnDeleteCourse = document.getElementById('btn-delete-course');
+    var deleteForm = document.forms['delet-course-form'];
+
+    var exampleModal = document.getElementById('delete-course-modal')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        courseId = button.getAttribute('data-id');
+    })
+
+    btnDeleteCourse.onclick = () => {
+        deleteForm.action = "/courses/" + courseId + "?_method=DELETE";
+        deleteForm.submit();
+    }
+
+</script>
