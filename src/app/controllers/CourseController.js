@@ -68,6 +68,28 @@ class CourseController {
             .then(() => res.redirect('/me/trash/courses'))
             .catch(next);
     }
+
+    handleFormActions(req, res, next) {
+        switch(req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body['courseIds[]'] } })
+                    .then(() => res.redirect('/me/stored/courses'))
+                    .catch(next);
+                break;
+            case 'restore':
+                Course.restore({ _id: { $in: req.body['courseIds[]'] } })
+                    .then(() => res.redirect('/me/trash/courses'))
+                    .catch(next);
+                break;
+            case 'forcedelete':
+                Course.deleteMany({ _id: { $in: req.body['courseIds[]'] } })
+                    .then(() => res.redirect('/me/trash/courses'))
+                    .catch(next);
+                break;
+            default:
+                res.json({  message: 'Action is invalid!'})
+        }
+    }
 }
 
 module.exports = new CourseController();
