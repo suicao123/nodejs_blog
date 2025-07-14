@@ -6,6 +6,8 @@ const { engine } = require('express-handlebars');
 const app = express();
 const port = 3000;
 
+const SortMiddleware = require('./app/middlewares/sortMiddleware');
+
 //tu nap file index
 const route = require('./routes');
 const db = require('./config/db');
@@ -16,6 +18,8 @@ db.connect();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(methodOverride('_method'))
+
+app.use(SortMiddleware);
 
 //middleWare xu ly du lieu form post
 app.use(express.urlencoded());
@@ -29,9 +33,7 @@ app.engine(
     'hbs',
     engine({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-        },
+        helpers: require('./helpers/handlebars'),
     }),
 );
 app.set('view engine', 'hbs');

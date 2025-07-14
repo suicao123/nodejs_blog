@@ -28,6 +28,7 @@
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
   },
   "dependencies": {
+    "bootstrap-icons": "^1.13.1",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.2",
     "method-override": "^3.0.0",
